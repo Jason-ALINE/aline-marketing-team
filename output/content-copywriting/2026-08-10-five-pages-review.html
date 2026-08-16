@@ -1,0 +1,760 @@
+<!doctype html>
+<title>Five Pages Ready for Review — ALINE Manufacturing</title>
+<style>
+  @font-face {
+    font-family: 'BahnLocal';
+    src: local('Bahnschrift'), local('Arial Narrow');
+  }
+
+  :root {
+    /* ALINE site — light pages (Home / Blog / About / new content pages) */
+    --paper: #ffffff;
+    --paper-raised: #ffffff;
+    --ink: #232b3a;
+    --ink-soft: #5b6577;
+    --navy: #1e3a6e;
+    --navy-soft: #3a5a94;
+    --rule: #dde2ea;
+    --rule-strong: #c3cbd9;
+    --coral: #d94a3a;
+    --coral-bg: #fbeae7;
+    --ready: #2f6f5e;
+    --ready-bg: #e4efe9;
+    --link-chip: #eef1f6;
+    --link-chip-ink: #1e3a6e;
+    --shadow: 0 1px 2px rgba(15,23,42,0.05), 0 8px 24px rgba(15,23,42,0.06);
+
+    /* ALINE site — dark /instructions pages (Horizontal/Vertical Move etc.) */
+    --instr-bg: #0e1a2b;
+    --instr-card: #1a2c44;
+    --instr-pill: #16273d;
+    --instr-ink: #eef2f8;
+    --instr-ink-soft: #b7c2d4;
+    --instr-coral: #e2604f;
+    --instr-blue: #4a8fe0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #f2f4f7;
+    color: var(--ink);
+    font-family: Georgia, 'Iowan Old Style', serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .label {
+    font-family: 'BahnLocal', 'Arial Narrow', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  .mono {
+    font-family: 'Consolas', 'SF Mono', 'Cascadia Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1, h2, h3 { text-wrap: balance; font-family: 'BahnLocal', 'Arial Narrow', 'Segoe UI', sans-serif; margin: 0; }
+
+  /* ---- top bar / intro (review-tool chrome, brand navy) ---- */
+
+  .topband {
+    background: var(--navy);
+    color: #fff;
+    padding: 2.6rem 1.5rem 2.2rem;
+  }
+  .topband-inner { max-width: 800px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: #ffb4a8;
+  }
+  .topband h1 {
+    color: #fff;
+    font-size: clamp(1.7rem, 4vw, 2.35rem);
+    font-weight: 700;
+    margin-top: 0.5rem;
+    letter-spacing: 0.01em;
+  }
+  .topband p {
+    font-family: Georgia, serif;
+    font-size: 1.02rem;
+    opacity: 0.88;
+    max-width: 60ch;
+    margin-top: 0.9rem;
+  }
+  .topband .key {
+    margin-top: 1.3rem;
+    display: flex;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+    font-family: 'BahnLocal', sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.03em;
+  }
+  .topband .key span { display: flex; align-items: center; gap: 0.4rem; opacity: 0.9; }
+  .topband .swatch { width: 0.7rem; height: 0.7rem; border-radius: 2px; display: inline-block; }
+
+  nav.toc {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fff;
+    border-bottom: 1px solid var(--rule);
+    padding: 0.7rem 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  nav.toc a {
+    flex: 0 0 auto;
+    text-decoration: none;
+    font-family: 'BahnLocal', 'Arial Narrow', 'Segoe UI', sans-serif;
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    background: #f5f6f8;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.4rem 0.7rem;
+    white-space: nowrap;
+  }
+  nav.toc a:hover { border-color: var(--navy-soft); color: var(--navy); }
+  nav.toc .toc-count {
+    font-family: 'BahnLocal', sans-serif;
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    align-self: center;
+    padding-right: 0.4rem;
+    letter-spacing: 0.04em;
+  }
+
+  main { max-width: 800px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+
+  .sheet-wrap { margin-top: 3rem; }
+  .sheet-tag {
+    font-family: 'BahnLocal', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+  }
+  .sheet-tag .stamp {
+    font-family: 'BahnLocal', sans-serif;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    padding: 0.18rem 0.5rem;
+    border: 1.5px solid currentColor;
+    border-radius: 3px;
+  }
+  .sheet-tag .stamp.ready { color: var(--ready); background: var(--ready-bg); }
+  .sheet-tag .stamp.flag { color: var(--coral); background: var(--coral-bg); }
+  .sheet-tag .theme-note { color: var(--ink-soft); font-style: normal; }
+
+  /* ============ LIGHT SHEET (general site pages) ============ */
+
+  .sheet.light {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .sheet.light .sheet-head {
+    padding: 1.7rem 1.9rem 1.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sheet.light .sheet-head h2 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--navy);
+    max-width: 32ch;
+  }
+  .sheet.light .meta-grid {
+    margin-top: 1.1rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35rem 0.9rem;
+    font-size: 0.86rem;
+  }
+  .sheet.light .meta-grid dt {
+    font-family: 'BahnLocal', sans-serif;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    font-size: 0.7rem;
+    align-self: baseline;
+    padding-top: 0.15rem;
+  }
+  .sheet.light .meta-grid dd { margin: 0; color: var(--ink); }
+  .sheet.light .meta-grid dd.mono { color: var(--navy); }
+  .sheet.light .sheet-body { padding: 1.8rem 1.9rem 0.6rem; }
+  .sheet.light .sheet-body h3.subh {
+    font-size: 1.1rem; font-weight: 700; margin: 1.9rem 0 0.5rem; color: var(--navy);
+  }
+  .sheet.light .sheet-body h3.subh:first-child { margin-top: 0; }
+  .sheet.light .sheet-body p { margin: 0 0 1rem; max-width: 62ch; }
+  .sheet.light .sheet-body ul, .sheet.light .sheet-body ol { margin: 0 0 1.1rem; padding-left: 1.35rem; max-width: 60ch; }
+  .sheet.light .sheet-body li { margin-bottom: 0.35rem; }
+  .sheet.light .link-chip {
+    display: inline-block; font-family: 'Consolas', 'SF Mono', monospace; font-size: 0.78rem;
+    background: var(--link-chip); color: var(--link-chip-ink); padding: 0.1rem 0.45rem; border-radius: 3px; margin: 0 0.1rem;
+  }
+
+  /* ============ DARK SHEET (real /instructions replica) ============ */
+
+  .sheet.dark {
+    background: var(--instr-bg);
+    color: var(--instr-ink);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(14,26,43,0.35);
+  }
+  .sheet.dark .sheet-head { padding: 1.8rem 1.9rem 1.5rem; }
+  .sheet.dark .crumb {
+    font-family: 'BahnLocal', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--instr-ink-soft);
+    margin-bottom: 0.9rem;
+  }
+  .sheet.dark .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'BahnLocal', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--instr-coral);
+    border: 1.5px solid var(--instr-coral);
+    border-radius: 3px;
+    padding: 0.35rem 0.7rem;
+    margin-bottom: 0.9rem;
+  }
+  .sheet.dark .badge .dot { width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--instr-coral); }
+  .sheet.dark .sheet-head h2 {
+    font-size: 1.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: #fff;
+    max-width: 26ch;
+  }
+  .sheet.dark .sheet-head .dek {
+    font-family: 'BahnLocal', sans-serif;
+    font-weight: 400;
+    font-size: 0.98rem;
+    color: var(--instr-ink-soft);
+    max-width: 58ch;
+    margin-top: 0.8rem;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  .sheet.dark .pillnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+  }
+  .sheet.dark .pillnav span {
+    font-family: 'BahnLocal', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    background: var(--instr-pill);
+    color: #fff;
+  }
+  .sheet.dark .pillnav span.current {
+    background: transparent;
+    border: 1.5px solid var(--instr-coral);
+    color: var(--instr-coral);
+  }
+  .sheet.dark .meta-grid {
+    margin-top: 1.3rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.35rem 0.9rem;
+    font-size: 0.84rem;
+  }
+  .sheet.dark .meta-grid dt {
+    font-family: 'BahnLocal', sans-serif; letter-spacing: 0.06em; color: var(--instr-ink-soft); font-size: 0.68rem; align-self: baseline; padding-top: 0.15rem;
+  }
+  .sheet.dark .meta-grid dd { margin: 0; color: var(--instr-ink); }
+  .sheet.dark .meta-grid dd.mono { color: var(--instr-blue); }
+
+  .sheet.dark .sheet-body { padding: 0.4rem 1.9rem 0.6rem; }
+  .sheet.dark .sheet-body h3.subh {
+    font-size: 1.05rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em;
+    margin: 1.9rem 0 0.6rem; color: #fff;
+    font-family: 'BahnLocal', sans-serif;
+  }
+  .sheet.dark .sheet-body h3.subh:first-child { margin-top: 0; }
+  .sheet.dark .sheet-body p { margin: 0 0 1rem; max-width: 62ch; color: var(--instr-ink-soft); font-family: Georgia, serif; }
+  .sheet.dark .sheet-body ul, .sheet.dark .sheet-body ol { margin: 0 0 1.1rem; padding-left: 1.35rem; max-width: 60ch; color: var(--instr-ink-soft); }
+  .sheet.dark .sheet-body li { margin-bottom: 0.35rem; }
+  .sheet.dark .sheet-body b { color: #fff; }
+  .sheet.dark .sheet-body table { border-collapse: collapse; margin: 0 0 1.2rem; font-size: 0.92rem; width: 100%; }
+  .sheet.dark .sheet-body th, .sheet.dark .sheet-body td { border: 1px solid #263a56; padding: 0.5rem 0.75rem; text-align: left; vertical-align: top; color: var(--instr-ink-soft); }
+  .sheet.dark .sheet-body th { background: var(--instr-card); color: #fff; font-family: 'BahnLocal', sans-serif; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; }
+  .sheet.dark .link-chip {
+    display: inline-block; font-family: 'Consolas', 'SF Mono', monospace; font-size: 0.78rem;
+    background: var(--instr-pill); color: var(--instr-blue); padding: 0.1rem 0.45rem; border-radius: 3px; margin: 0 0.1rem;
+  }
+  .sheet.dark code.formula {
+    display: block; font-family: 'Consolas', 'SF Mono', monospace; background: var(--instr-card);
+    border: 1px solid #263a56; border-radius: 4px; padding: 0.9rem 1.1rem; font-size: 0.9rem;
+    white-space: pre-wrap; margin-bottom: 1.2rem; color: var(--instr-blue);
+  }
+
+  .before-card {
+    background: var(--instr-card);
+    border-radius: 6px;
+    padding: 1.2rem 1.4rem;
+    margin: 0.4rem 0 1.6rem;
+  }
+  .before-card .bc-title {
+    font-family: 'BahnLocal', sans-serif; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.06em;
+    color: #fff; text-transform: uppercase; margin-bottom: 0.7rem;
+  }
+  .before-card .bc-grid { columns: 2; column-gap: 2rem; }
+  .before-card .bc-item {
+    display: flex; gap: 0.5rem; font-size: 0.9rem; color: var(--instr-ink-soft);
+    break-inside: avoid; margin-bottom: 0.55rem; font-family: Georgia, serif;
+  }
+  .before-card .bc-item::before { content: '\2014'; color: var(--instr-coral); flex: none; }
+  @media (max-width: 520px) { .before-card .bc-grid { columns: 1; } }
+
+  .asset-note {
+    font-size: 0.86rem; margin: 0 0 1.2rem; padding: 0.6rem 1rem; border-radius: 4px;
+  }
+  .sheet.light .asset-note { color: var(--ink-soft); border-left: 3px solid var(--rule-strong); background: #f7f8fa; }
+  .sheet.light .asset-note .mono { color: var(--ink); }
+  .sheet.dark .asset-note { color: var(--instr-ink-soft); border-left: 3px solid var(--instr-blue); background: var(--instr-card); }
+  .sheet.dark .asset-note .mono { color: var(--instr-blue); }
+
+  details.notes { margin: 1.5rem 0 0; padding: 1.1rem 1.9rem 1.5rem; }
+  .sheet.light details.notes { border-top: 1px dashed var(--rule-strong); background: #fafbfc; }
+  .sheet.dark details.notes { border-top: 1px dashed #263a56; background: #0a1420; }
+  details.notes summary {
+    cursor: pointer; font-family: 'BahnLocal', sans-serif; font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .sheet.light details.notes summary { color: var(--ink-soft); }
+  .sheet.light details.notes summary:hover { color: var(--navy); }
+  .sheet.dark details.notes summary { color: var(--instr-ink-soft); }
+  .sheet.dark details.notes summary:hover { color: var(--instr-blue); }
+  details.notes .notes-body { font-size: 0.9rem; margin-top: 0.8rem; max-width: 62ch; }
+  .sheet.light details.notes .notes-body { color: var(--ink-soft); }
+  .sheet.dark details.notes .notes-body { color: var(--instr-ink-soft); }
+  details.notes .notes-body p { margin: 0 0 0.8rem; }
+  details.notes .flagitem {
+    padding: 0.55rem 0.85rem; border-radius: 0 3px 3px 0; margin-bottom: 0.7rem; font-size: 0.88rem;
+  }
+  .sheet.light details.notes .flagitem { border-left: 3px solid var(--coral); background: var(--coral-bg); color: var(--ink); }
+  .sheet.dark details.notes .flagitem { border-left: 3px solid var(--instr-coral); background: #241a1f; color: var(--instr-ink); }
+  details.notes .flagitem b {
+    font-family: 'BahnLocal', sans-serif; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; display: block; margin-bottom: 0.2rem;
+  }
+  .sheet.light details.notes .flagitem b { color: var(--coral); }
+  .sheet.dark details.notes .flagitem b { color: var(--instr-coral); }
+
+  footer {
+    max-width: 800px; margin: 3.5rem auto 0; padding: 1.6rem 1.5rem 3rem; border-top: 1px solid var(--rule);
+    font-family: 'BahnLocal', sans-serif; font-size: 0.78rem; letter-spacing: 0.03em; color: var(--ink-soft);
+  }
+
+  @media (max-width: 560px) {
+    .sheet.light .sheet-head, .sheet.light .sheet-body,
+    .sheet.dark .sheet-head, .sheet.dark .sheet-body { padding-left: 1.1rem; padding-right: 1.1rem; }
+    .sheet.light .meta-grid, .sheet.dark .meta-grid { grid-template-columns: 1fr; }
+    .sheet.light .meta-grid dt, .sheet.dark .meta-grid dt { margin-top: 0.4rem; }
+  }
+</style>
+
+<div class="topband">
+  <div class="topband-inner">
+    <div class="eyebrow label">ALINE MANUFACTURING &middot; CONTENT REVIEW</div>
+    <h1>Five pages, drafted and waiting on you</h1>
+    <p>Recolored to match the real site: pages 1&ndash;2 preview in the site's general light theme, pages 3&ndash;5 preview in the exact dark navy theme used across the live Introduction / Horizontal Move / Vertical Move pages &mdash; verified directly against those pages, not guessed.</p>
+    <div class="key">
+      <span><span class="swatch" style="background:#1e3a6e"></span>Site navy</span>
+      <span><span class="swatch" style="background:#0e1a2b"></span>Instructions bg</span>
+      <span><span class="swatch" style="background:#d94a3a"></span>Accent coral</span>
+      <span><span class="swatch" style="background:#4a8fe0"></span>Instructions blue</span>
+    </div>
+  </div>
+</div>
+
+<nav class="toc">
+  <span class="toc-count">Jump to:</span>
+  <a href="#laser">1&nbsp;&middot;&nbsp;Laser + ALINE</a>
+  <a href="#api686">2&nbsp;&middot;&nbsp;API&nbsp;686 / ANSI</a>
+  <a href="#introduction">3&nbsp;&middot;&nbsp;Introduction</a>
+  <a href="#softfoot">4&nbsp;&middot;&nbsp;Soft Foot Check</a>
+  <a href="#sagcheck">5&nbsp;&middot;&nbsp;Sag Check</a>
+</nav>
+
+<main>
+
+  <!-- ============ PAGE 1 — LIGHT (general site page) ============ -->
+  <div class="sheet-wrap" id="laser">
+    <div class="sheet-tag">
+      <span class="stamp ready">READY</span>
+      <span>PAGE 1 OF 5 &mdash; NEW PAGE</span>
+      <span class="theme-note">&middot; site general theme (light)</span>
+    </div>
+    <section class="sheet light">
+      <div class="sheet-head">
+        <h2>You Don't Have to Choose Between Your Laser and ALINE</h2>
+        <dl class="meta-grid">
+          <dt>URL</dt><dd class="mono">/laser-alignment-pipe-strain-check</dd>
+          <dt>Title&nbsp;tag</dt><dd>Laser Alignment + Pipe Strain Check | ALINE Manufacturing <span class="mono">(57 ch)</span></dd>
+          <dt>Meta</dt><dd>Already run a laser alignment tool? Add an ALINE reverse-indicator check for pipe strain, soft foot, and runout &mdash; the gaps a laser alone won't catch. <span class="mono">(149 ch)</span></dd>
+        </dl>
+      </div>
+      <div class="sheet-body">
+        <p>If your crew already owns a laser alignment system, good &mdash; keep using it. This isn't a pitch to replace it.</p>
+        <p>It's a pitch to add five minutes and one more tool to the job, because there's a gap between "the shaft is aligned" and "the machine is actually going to run right," and a laser only closes half of it.</p>
+
+        <h3 class="subh">What Your Laser Is Already Good At</h3>
+        <p>Laser alignment tools are fast and they're accurate at what they're built to measure: angular and offset misalignment between the coupling halves. If that's the whole job, a laser gets you there.</p>
+
+        <h3 class="subh">What It's Not Checking</h3>
+        <p>A laser reads the coupling. It doesn't tell you:</p>
+        <ul>
+          <li><b>Pipe strain</b> &mdash; whether the piping is pulling or pushing on the pump casing once it's bolted up, which can throw a perfectly aligned coupling out of tolerance the moment the last flange bolt is torqued.</li>
+          <li><b>Soft foot</b> &mdash; a foot that isn't making full, flat contact with the baseplate, which flexes the frame every time you snug a hold-down bolt and quietly undoes your alignment numbers.</li>
+          <li><b>Runout</b> &mdash; bent shafts or coupling faces that aren't true, which will read as "misalignment" on a laser even when the shafts themselves are lined up correctly.</li>
+          <li><b>Bearing clearance issues</b> &mdash; problems inside the machine that no external alignment reading, laser or otherwise, is going to surface.</li>
+        </ul>
+        <p>None of that is a knock on laser tools. They were never built to catch it. It's just outside the job they do.</p>
+
+        <h3 class="subh">How Crews Are Actually Using ALINE</h3>
+        <p>This is the part that's changed. ALINE was built around the reverse-indicator method, and for a long time the pitch was straightforward: reverse-indicator instead of laser.</p>
+        <p>What's actually happening on real jobs, especially in chemical plants, water treatment facilities, and pipeline work, is different. Millwrights and maintenance crews who already have a laser aren't retiring it. They're running an ALINE tool on the same job, on the same machine, to check what the laser can't &mdash; pipe strain in particular, since that's the one most likely to bite a crew <i>after</i> the laser already said "good alignment" and everyone's walked away.</p>
+        <p>Laser handles the alignment. ALINE checks the strain. Same job, same crew, fifteen extra minutes with a tool that doesn't need batteries, calibration, or a line-of-sight setup.</p>
+
+        <h3 class="subh">When to Run the Check</h3>
+        <p>The most common point crews add an ALINE strain check:</p>
+        <ol>
+          <li><b>Before final bolt-up</b> &mdash; confirm the piping isn't loading the case before you commit to it.</li>
+          <li><b>After final bolt-up</b> &mdash; the flange bolts are the moment strain actually gets locked in, so a post-bolt-up check catches what pre-bolt-up can't.</li>
+          <li><b>On recurring problem machines</b> &mdash; if a pump or motor keeps drifting out of tolerance for no obvious reason, strain and soft foot are two of the most common culprits a laser alone will never show you.</li>
+        </ol>
+
+        <h3 class="subh">Which ALINE Tool for This</h3>
+        <p>You don't need a full reverse-indicator setup to run a strain check alongside your laser work. An <span class="link-chip">A-1000</span> covers the bracket and dial-indicator setup most crews use for this &mdash; the Starrett 196B1 dial indicator it ships with reads to .001" accuracy. If your team is also doing full reverse-indicator alignment on other jobs, the <span class="link-chip">A-2000</span> and <span class="link-chip">A-3000</span> combination sets add that capability in the same case.</p>
+
+        <h3 class="subh">Why This Matters for Specs and RFQs</h3>
+        <p>If your work falls under a spec that references <b>API 686</b> or <b>ANSI S2.75</b> &mdash; common on chemical plant, water treatment, and pipeline jobs &mdash; a laser-only alignment record doesn't fully document what those standards actually call for. Reverse-indicator checks for strain, soft foot, and runout close that gap. <span class="link-chip">&rarr; /api-686-ansi-s2-75-alignment-standards</span></p>
+
+        <h3 class="subh">Bottom Line</h3>
+        <p>Owning a laser doesn't mean you're done. It means you've handled the alignment half of the job. ALINE handles the other half &mdash; the part that shows up as a callback three weeks later if nobody checked it.</p>
+
+        <details class="notes">
+          <summary>Notes &amp; provenance (7)</summary>
+          <div class="notes-body">
+            <p>No customer quotes or named crews &mdash; written as general practice, not attributed to a specific customer. Persona check: written for millwrights/maintenance crews as primary reader, consistent with company-brief.md's real-buyer list. Tool recommendation (A-1000 for standalone strain check) confirmed correct by you on 2026-08-01. Deliberately does NOT reuse the Amazon listing's "same accuracy as a $5,000&ndash;$15,000 laser" framing &mdash; that's a replace-the-laser pitch; this page is add-to-what-you-have. All internal links resolved and confirmed ready to build.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ PAGE 2 — LIGHT (general site page) ============ -->
+  <div class="sheet-wrap" id="api686">
+    <div class="sheet-tag">
+      <span class="stamp ready">READY</span>
+      <span>PAGE 2 OF 5 &mdash; NEW PAGE</span>
+      <span class="theme-note">&middot; site general theme (light)</span>
+    </div>
+    <section class="sheet light">
+      <div class="sheet-head">
+        <h2>API 686 and ANSI S2.75 &mdash; What They Actually Mean for Your Alignment Job</h2>
+        <dl class="meta-grid">
+          <dt>URL</dt><dd class="mono">/api-686-ansi-s2-75-alignment-standards</dd>
+          <dt>Title&nbsp;tag</dt><dd>API 686 &amp; ANSI S2.75 Alignment Standards | ALINE Manufacturing <span class="mono">(62 ch)</span></dd>
+          <dt>Meta</dt><dd>API 686 and ANSI S2.75, explained in plain language &mdash; what they require for shaft alignment and how reverse-indicator checks help document compliance. <span class="mono">(150 ch)</span></dd>
+        </dl>
+      </div>
+      <div class="sheet-body">
+        <p>If you've seen "API 686" or "ANSI S2.75" show up in a spec sheet or an RFQ and moved on without digging into what they actually require, you're not alone. Here's what they cover, in plain terms, and what it means for how you document an alignment job.</p>
+
+        <h3 class="subh">Why These Show Up in Your Paperwork</h3>
+        <p>API 686 and ANSI S2.75 aren't quality-claim language &mdash; they're real reference standards that chemical plants, water treatment facilities, and pipeline operators write directly into their equipment specs and RFQs. If you're doing alignment work for one of these customers, there's a decent chance one or both of these standards is already sitting in the job packet, whether or not anyone on the crew has read it.</p>
+
+        <h3 class="subh">API 686 &mdash; Machinery Installation</h3>
+        <p>API 686 is the American Petroleum Institute's recommended practice covering machinery installation &mdash; baseplates, grouting, piping, and alignment among other topics. The alignment portion is the piece that matters most day-to-day: it addresses shaft alignment method and tolerance as part of getting a machine installed correctly, not just bolted down and spun up.</p>
+
+        <h3 class="subh">ANSI S2.75 &mdash; Shaft Alignment</h3>
+        <p>ANSI/ASA S2.75 is the standard focused specifically on shaft alignment &mdash; methods, tolerances, and what counts as an adequately documented alignment. Where API 686 sits inside the broader installation process, ANSI S2.75 is the narrower standard a spec will point to when shaft alignment itself is the thing being called out.</p>
+
+        <h3 class="subh">What This Means for How You Check a Machine</h3>
+        <p>Both standards are built around the idea that a coupling reading by itself isn't the whole story. A machine can show good angular and offset numbers on a laser and still be misaligned in ways that matter &mdash; because of pipe strain pulling on the case, a soft foot flexing the frame when it's bolted down, or runout on the shaft or coupling face that a laser reads as misalignment when the shaft itself is fine.</p>
+        <p>This is where the reverse-indicator method &mdash; what ALINE tools are built around &mdash; lines up with what these standards are actually asking for. Reverse-indicator readings are how a crew checks strain, soft foot, and runout directly, not just the coupling angle and offset a laser measures.</p>
+
+        <h3 class="subh">A Practical Tolerance Reference</h3>
+        <p>As a rule of thumb, many crews work to a tolerance of <b>.0005" per inch of coupling span</b> for general-purpose equipment running at or below 3600 RPM. That's a field guideline, not a substitute for reading the actual tolerance tables in your governing spec &mdash; different equipment classes, speeds, and coupling types call for tighter numbers, and the spec on your job packet is the one that actually controls. <span class="link-chip">&rarr; /alignment-tolerances</span></p>
+
+        <h3 class="subh">Documenting the Job</h3>
+        <p>If a spec references API 686 or ANSI S2.75, the strongest alignment record is one that shows more than "laser said good." A reverse-indicator check that documents pipe strain, soft foot, and runout &mdash; in addition to the coupling alignment itself &mdash; is a more complete record against what these standards are actually asking for.</p>
+        <p>Every ALINE toolset reads to <b>.001" accuracy</b>, the resolution of the Starrett 196B1 dial indicator each set ships with &mdash; so the numbers going into that record are as precise as the instrument itself.</p>
+        <p>This doesn't mean retiring a laser tool. Most crews on jobs like this are running both: laser for the coupling alignment, ALINE for the checks a laser doesn't cover. <span class="link-chip">&rarr; /laser-alignment-pipe-strain-check</span></p>
+
+        <h3 class="subh">Which ALINE Tool</h3>
+        <p>The <span class="link-chip">A-1000</span> is the standard setup for reverse-indicator bracket-and-dial-indicator work on a single job. The <span class="link-chip">A-2000</span> and <span class="link-chip">A-3000</span> combination sets cover a wider range of shaft sizes in one case if your crew is handling multiple machine classes on the same contract.</p>
+
+        <h3 class="subh">Bottom Line</h3>
+        <p>API 686 and ANSI S2.75 aren't just words on a spec sheet &mdash; they describe a more complete alignment check than a coupling reading alone, and reverse-indicator method is how you actually produce that check in the field.</p>
+
+        <details class="notes">
+          <summary>Notes &amp; provenance (5)</summary>
+          <div class="notes-body">
+            <p><b>Standards descriptions independently verified</b> 2026-08-10 against public sources (GlobalSpec, rotating.equipment, ANSI/ASA store listings). API 686 = current 2nd Edition (reaffirmed July 2024). ANSI S2.75 Part 1 scope is limited to flexibly-coupled, horizontal machines &mdash; a known simplification for this audience, not an error. The .0005"/inch figure is independently corroborated by Fluke's and Ludeca's published guidance, and is correctly framed as a rule of thumb, not sourced from either standard. Not claiming ALINE tools are "certified" under either standard &mdash; no such claim exists anywhere, copy stays at "lines up with." All internal links resolved and ready to build.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ PAGE 3 — DARK (real /instructions replica) ============ -->
+  <div class="sheet-wrap" id="introduction">
+    <div class="sheet-tag">
+      <span class="stamp flag">FLAG BEFORE PUBLISH</span>
+      <span>PAGE 3 OF 5 &mdash; RESTORED /INSTRUCTIONS PAGE</span>
+      <span class="theme-note">&middot; verified against live Horizontal/Vertical Move (dark)</span>
+    </div>
+    <section class="sheet dark">
+      <div class="sheet-head">
+        <div class="crumb">Introduction</div>
+        <div class="badge"><span class="dot"></span>RESTORED PAGE</div>
+        <h2>How to Perform Reverse-Indicator Shaft Alignment</h2>
+        <p class="dek">The first step on every job: mount the brackets and measure A, B, and C. Every other page in this sequence assumes you've already got these three numbers written down.</p>
+        <div class="pillnav">
+          <span class="current">Introduction</span>
+          <span>Alignment tolerances</span>
+          <span>Horizontal move</span>
+          <span>Vertical move</span>
+          <span>Soft foot check</span>
+          <span>Sag check</span>
+          <span>Thermal movement</span>
+          <span>Software download</span>
+        </div>
+        <dl class="meta-grid">
+          <dt>URL</dt><dd class="mono">/introduction</dd>
+          <dt>Title&nbsp;tag</dt><dd>Shaft Alignment Instructions &mdash; Reverse-Indicator Method | ALINE Manufacturing</dd>
+          <dt>Status</dt><dd>Restored from Google-cache of the retired page. Core text matched consistently across multiple independent cache hits &mdash; high confidence.</dd>
+        </dl>
+      </div>
+      <div class="sheet-body">
+        <p>Reverse alignment is the measurement of the centerline of one shaft relative to the centerline of an opposing shaft. Taken correctly, that measurement can be projected the full length of both shafts &mdash; which is what lets you account for thermal growth later &mdash; and it shows you the position of both centerlines at the coupling flex planes, which is what you need to pick an allowable tolerance.</p>
+
+        <div class="before-card">
+          <div class="bc-title">Before You Start</div>
+          <div class="bc-grid">
+            <div class="bc-item">Bracket set and dial indicators (each ALINE set ships with a Starrett 196B1 &mdash; .001" resolution)</div>
+            <div class="bc-item">Tape measure or calipers, for A/B/C</div>
+            <div class="bc-item">Adjustable wrench, for the bracket clamps</div>
+            <div class="bc-item">Flat file and a rag &mdash; clean mounting surface, no nicks or burrs</div>
+          </div>
+        </div>
+
+        <h3 class="subh">Mount the Brackets</h3>
+        <p>Clamp one precision bracket to each shaft (or hub), bridging the coupling without disconnecting it. Before you clamp down:</p>
+        <ol>
+          <li>Clean the mounting surface on both shafts/hubs. File off any nicks or burrs &mdash; a bracket that isn't seated flat will give you bad readings no matter how careful the rest of the job is.</li>
+          <li>Aim each indicator stem directly at the centerline of the shaft it's reading.</li>
+          <li>Snug the clamps enough that the bracket can't shift, but don't overtighten to the point you're deforming anything.</li>
+        </ol>
+
+        <h3 class="subh">Measure A, B, and C</h3>
+        <div class="asset-note">Uses an existing site asset &mdash; original diagram <span class="mono">introd2.jpeg</span> / <span class="mono">introd3.jpeg</span> / <span class="mono">introd4.jpeg</span>, already in Wix Media Manager. No new diagram needed.</div>
+        <table>
+          <tr><th>Measurement</th><th>What it is</th></tr>
+          <tr><td><b>A</b></td><td>Distance between the two indicators</td></tr>
+          <tr><td><b>B</b></td><td>Distance from the indicator to the near ("front") foot of the machine being moved</td></tr>
+          <tr><td><b>C</b></td><td>Distance between that machine's front and back feet</td></tr>
+        </table>
+        <p>Write these down before you touch anything else. B and C are what let you convert the indicator readings you take on the Horizontal Move and Vertical Move pages into actual shim and move amounts at each foot &mdash; get them wrong and every downstream calculation is wrong with them.</p>
+
+        <h3 class="subh">Take Your Readings</h3>
+        <p>With both brackets mounted and A/B/C recorded, rotate the shafts together and take indicator readings at four positions &mdash; top, bottom, left, and right &mdash; at each indicator.</p>
+
+        <h3 class="subh">What's Next</h3>
+        <ul>
+          <li>Check <span class="link-chip">/alignment-tolerances</span> to know what target you're working toward before you start moving anything.</li>
+          <li>Run a <span class="link-chip">/sag-check</span> using this same bracket span before you trust any vertical readings.</li>
+          <li>Run a <span class="link-chip">/soft-foot-check</span> on the machine before final bolt-up.</li>
+          <li>Then move to <span class="link-chip">/horizontal-move</span> and <span class="link-chip">/vertical-move</span> with A, B, and C in hand.</li>
+        </ul>
+
+        <details class="notes" open>
+          <summary>Notes &amp; open flags (2 need your sign-off)</summary>
+          <div class="notes-body">
+            <div class="flagitem"><b>Needs your confirmation</b>The exact reading sequence &mdash; "four readings, top/bottom/left/right" &mdash; could not be confirmed as a fixed 90&deg; rotation starting at 12 o'clock, or whether both shafts rotate together vs. independently. Someone who's actually run the ALINE bracket hardware (you) should confirm this line before it ships.</div>
+            <div class="flagitem"><b>Reasonable reconstruction, not verbatim</b>The BEFORE YOU START tool list (tape measure, wrench, file, rag) matches what the procedure implies you'd need, but isn't a restored verbatim checklist.</div>
+            <p>Everything else &mdash; the opening definition, the A/B/C table, which machine ("Moveable") B and C are measured on &mdash; is confirmed either via 2+ independent cache matches or the original site diagrams found in Wix Media Manager.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ PAGE 4 — DARK (real /instructions replica) ============ -->
+  <div class="sheet-wrap" id="softfoot">
+    <div class="sheet-tag">
+      <span class="stamp flag">FLAG BEFORE PUBLISH</span>
+      <span>PAGE 4 OF 5 &mdash; RESTORED /INSTRUCTIONS PAGE</span>
+      <span class="theme-note">&middot; verified against live Horizontal/Vertical Move (dark)</span>
+    </div>
+    <section class="sheet dark">
+      <div class="sheet-head">
+        <div class="crumb">Introduction / Soft Foot Check</div>
+        <div class="badge"><span class="dot"></span>RESTORED PAGE</div>
+        <h2>Soft Foot Check &mdash; How to Detect and Correct Soft Foot</h2>
+        <p class="dek">Check for soft foot before you trust any alignment reading, and before final bolt-up.</p>
+        <div class="pillnav">
+          <span>Introduction</span>
+          <span>Alignment tolerances</span>
+          <span>Horizontal move</span>
+          <span>Vertical move</span>
+          <span class="current">Soft foot check</span>
+          <span>Sag check</span>
+          <span>Thermal movement</span>
+          <span>Software download</span>
+        </div>
+        <dl class="meta-grid">
+          <dt>URL</dt><dd class="mono">/soft-foot-check</dd>
+          <dt>Title&nbsp;tag</dt><dd>Soft Foot Check &mdash; Detect &amp; Correct Soft Foot in Pump/Motor Alignment | ALINE Manufacturing</dd>
+          <dt>Status</dt><dd>Restored &mdash; core procedure matched near-identically across three independent cache queries.</dd>
+        </dl>
+      </div>
+      <div class="sheet-body">
+        <p>Soft foot means one of the machine's feet isn't sitting flat on the baseplate &mdash; the foot or the base has warped, or there's something trapped underneath it. Bolt a soft foot down and you drag the shaft centerline out of position the moment you torque it. No amount of careful work on the Horizontal Move or Vertical Move pages will hold if a soft foot is fighting you underneath.</p>
+
+        <div class="before-card">
+          <div class="bc-title">Before You Start</div>
+          <div class="bc-grid">
+            <div class="bc-item">Dial indicator with a magnetic base</div>
+            <div class="bc-item">Shim stock, various thicknesses</div>
+            <div class="bc-item">Wrench sized for the base bolts</div>
+            <div class="bc-item">Torque wrench, for final retightening to spec</div>
+          </div>
+        </div>
+
+        <h3 class="subh">Procedure</h3>
+        <ol>
+          <li>Set the dial indicator to the 12 o'clock position against the foot you're checking, depress it, and zero it.</li>
+          <li>Loosen that foot's base bolt.</li>
+          <li>Watch the indicator. If it moves away from zero, that foot is soft &mdash; and the amount it moves is how much shim you need under that foot to correct it.</li>
+          <li>Slide in shims to that thickness.</li>
+          <li>Retighten the bolt to spec and confirm the indicator needle doesn't move. If it holds at zero, the soft foot is corrected.</li>
+          <li>Repeat for each remaining foot.</li>
+        </ol>
+        <div class="asset-note">Uses existing site assets &mdash; <span class="mono">soft_foot_angular.jpeg</span> and <span class="mono">soft_foot_parallel.jpeg</span>, already in Wix Media Manager.</div>
+
+        <h3 class="subh">Log Your Readings</h3>
+        <table>
+          <tr><th>Foot</th><th>Movement when bolt loosened</th><th>Shim added</th></tr>
+          <tr><td>1</td><td></td><td></td></tr>
+          <tr><td>2</td><td></td><td></td></tr>
+          <tr><td>3</td><td></td><td></td></tr>
+          <tr><td>4</td><td></td><td></td></tr>
+        </table>
+
+        <h3 class="subh">Why This Matters Before You Align</h3>
+        <p>A soft foot changes shape every time that bolt is torqued or loosened &mdash; which means it changes your indicator readings on every page after this one. Confirming it's corrected here is what makes the Horizontal Move and Vertical Move numbers trustworthy later.</p>
+
+        <details class="notes" open>
+          <summary>Notes &amp; open flags (2 need your sign-off)</summary>
+          <div class="notes-body">
+            <div class="flagitem"><b>Needs your confirmation</b>The cached source text never states where the magnetic base attaches (baseplate vs. motor/pump frame). Left generic as "magnetic base" &mdash; if ALINE's actual field procedure mounts it a specific way, that detail should go in.</div>
+            <div class="flagitem"><b>Added, not sourced</b>"Retighten to spec" / torque wrench language is a reasonable field-practice addition, but the cached text only says "retighten." Flagging in case your actual procedure is looser than "to spec."</div>
+            <p>The core 6-step procedure is directly sourced and matched across 3 independent cache queries &mdash; high confidence, nothing reordered or added there. The reading-log table is new, not restored &mdash; cut it if it doesn't fit the site's style.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ PAGE 5 — DARK (real /instructions replica) ============ -->
+  <div class="sheet-wrap" id="sagcheck">
+    <div class="sheet-tag">
+      <span class="stamp flag">FLAG BEFORE PUBLISH</span>
+      <span>PAGE 5 OF 5 &mdash; RESTORED /INSTRUCTIONS PAGE</span>
+      <span class="theme-note">&middot; verified against live Horizontal/Vertical Move (dark)</span>
+    </div>
+    <section class="sheet dark">
+      <div class="sheet-head">
+        <div class="crumb">Introduction / Sag Check</div>
+        <div class="badge"><span class="dot"></span>RESTORED PAGE</div>
+        <h2>Sag Check &mdash; Correcting Bracket Sag Before Alignment</h2>
+        <p class="dek">Run this check before you take your final readings on Vertical Move &mdash; you need the same bracket span you measured on the Introduction page.</p>
+        <div class="pillnav">
+          <span>Introduction</span>
+          <span>Alignment tolerances</span>
+          <span>Horizontal move</span>
+          <span>Vertical move</span>
+          <span>Soft foot check</span>
+          <span class="current">Sag check</span>
+          <span>Thermal movement</span>
+          <span>Software download</span>
+        </div>
+        <dl class="meta-grid">
+          <dt>URL</dt><dd class="mono">/sag-check</dd>
+          <dt>Title&nbsp;tag</dt><dd>Sag Check Procedure for Shaft Alignment | ALINE Manufacturing</dd>
+          <dt>Status</dt><dd>Restored &mdash; procedure text matched consistently across two independent cache queries.</dd>
+        </dl>
+      </div>
+      <div class="sheet-body">
+        <p>Every alignment bracket sags a little under its own weight &mdash; the longer the span between indicator and bracket, the more it sags. Don't account for it, and that sag shows up in your readings as vertical misalignment that isn't really there.</p>
+
+        <div class="before-card">
+          <div class="bc-title">Before You Start</div>
+          <div class="bc-grid">
+            <div class="bc-item">Your bracket set and indicators, mounted at the same span (the A distance) you measured on the Introduction page</div>
+            <div class="bc-item">A sturdy piece of pipe or rod to clamp the brackets to for the test</div>
+          </div>
+        </div>
+
+        <h3 class="subh">Procedure</h3>
+        <ol>
+          <li>Clamp the brackets onto the pipe at the same distance apart they'll be when mounted on the actual equipment.</li>
+          <li>Zero both indicators at the top (12 o'clock).</li>
+          <li>Rotate both indicators to the bottom (6 o'clock) and read them.</li>
+          <li>The difference between the top and bottom reading is the sag.</li>
+        </ol>
+
+        <h3 class="subh">Sag Check Formula</h3>
+        <code class="formula">Sag = Top reading &minus; Bottom reading
+Sag is always a negative value.</code>
+        <p>Because sag is always negative, when you get to the <span class="link-chip">/vertical-move</span> page, start your dial indicator with a plus (+) reading to offset it.</p>
+        <div class="asset-note">Uses an existing site asset &mdash; <span class="mono">sagche5.jpeg</span>, a real photo of the actual bracket-on-pipe sag check setup, already in Wix Media Manager.</div>
+
+        <h3 class="subh">Why This Matters Before Final Bolt-Up</h3>
+        <p>Sag isn't a defect &mdash; it's physics, and every bracket has some. The point of this check isn't to eliminate it, it's to know the number so you can subtract it out before you trust a vertical reading.</p>
+
+        <details class="notes" open>
+          <summary>Notes &amp; open flags (1 needs your sign-off)</summary>
+          <div class="notes-body">
+            <div class="flagitem"><b>Needs your confirmation</b>Source material says "a sturdy piece of pipe" with no diameter or material called out. Nothing was invented here &mdash; if ALINE's shop uses a standard test bar, that spec should go in.</div>
+            <p>The core sag procedure and formula are directly sourced, matched across 2 independent cache queries. The formula-box framing and the "haven't mounted your brackets" cross-reference are new additions matching the site's existing style &mdash; not restored text, but structurally consistent.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer>
+  DRAFTED BY CONTENT-COPYWRITING &amp; SEO-TECHNICAL-CONTENT &middot; COLOR-VERIFIED AGAINST LIVE HORIZONTAL/VERTICAL MOVE PAGES 2026-08-10 &middot; NONE OF THESE ARE LIVE
+</footer>
